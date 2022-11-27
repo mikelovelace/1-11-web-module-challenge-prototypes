@@ -119,10 +119,6 @@ console.log(`My favorite food is ${myFavFood.food})
 ============================================================================================================================================
 */
 
-
-
-
-
 /*
   TASK 1
     - Write a Person Constructor that initializes `name` and `age` from arguments.
@@ -137,9 +133,39 @@ console.log(`My favorite food is ${myFavFood.food})
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+
+Person.prototype.eat = function (food) {
+  if (this.stomach.length <= 10) {
+    this.stomach.push(food);
+  }
+};
+
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+};
+
+const mike = new Person("Mike", 43);
+
+console.log(mike.stomach);
+mike.eat("tacos");
+mike.eat("gyros");
+mike.eat("sandwiches");
+
+console.log(mike.stomach);
+mike.poop();
+console.log(mike.stomach);
+
+console.log(mike.toString())
+
 
 
 /*
@@ -158,10 +184,7 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
-}
-
+function Car() {}
 
 /*
   TASK 3
@@ -171,10 +194,7 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
-}
-
+function Baby() {}
 
 /* 
   TASK 4
@@ -188,14 +208,14 @@ function Baby() {
 ///////// END OF CHALLENGE /////////
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working!');
-  return 'bar';
+function foo() {
+  console.log("its working!");
+  return "bar";
 }
 foo();
 module.exports = {
   foo,
-  Person, 
+  Person,
   Car,
-  Baby
-}
+  Baby,
+};
